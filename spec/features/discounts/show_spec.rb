@@ -10,7 +10,6 @@ RSpec.describe 'discounts show' do
   it 'shows the discounts and their information' do
     visit "merchant/#{@merchant.id}/discounts/#{@discount_1.id}"
 
-    save_and_open_page
     within '#discount' do
       expect(page).to have_content("20%")
       expect(page).to have_content("10 Items required for discount")

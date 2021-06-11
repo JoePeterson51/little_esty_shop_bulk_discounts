@@ -1,0 +1,19 @@
+<h3><%= @merchant.name %>'s discounts</h3>
+<table class="table table-sm" id='merchant-discounts'>
+  <thread>
+    <tr>
+      <td>Percentage</td>
+      <td>Quantity Required</td>
+      <td>See Discount</td>
+    </tr>
+  </thread>
+  <tbody>
+    <% @discounts.each do |discount| %>
+      <tr>
+        <td><%= discount.percentage %>%</td>
+        <td><%= discount.quantity_required %> Items required for discount</td>
+        <td><%= link_to "Click Here!", "merchant/#{@merchant.id}/discounts/#{discount.id}" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

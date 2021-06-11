@@ -1,0 +1,13 @@
+<h3><%= @merchant.name %>'s discounts</h3>
+<table class="table table-sm" id='discount'>
+  <thread>
+    <tr>
+      <td>Percentage</td>
+      <td>Quantity Required</td>
+    </tr>
+  </thread>
+  <tbody>
+    <td><%= @discount.percentage %>%</td>
+    <td><%= @discount.quantity_required %> Items required for discount</td>
+  </tbody>
+</table>

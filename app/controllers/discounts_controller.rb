@@ -5,6 +5,22 @@ class DiscountsController < ApplicationController
     @holidays = GetHolidays.new('US').closest_holidays
   end
 
+  def edit
+    @merchant = Merchant.find(params[:merchant_id])
+    @discount = Discount.find(params[:id])
+  end
+
+  def update
+    merchant = Merchant.find(params[:merchant_id])
+    discount = Discount.find(params[:id])
+    if discount.update(discount_params)
+      redirect_to "/merchant/#{merchant.id}/discounts/#{discount.id}"
+    else
+      redirect_to "/merchant/#{merchant.id}/discounts/#{discount.id}/edit"
+      flash[:alert] = "Must fill out all fields"
+    end
+  end
+
   def show
     @merchant = Merchant.find(params[:merchant_id])
     @discount = Discount.find(params[:id])
@@ -30,6 +46,7 @@ class DiscountsController < ApplicationController
     Discount.find(params[:id]).destroy
     redirect_to "/merchant/#{merchant.id}/discounts"
   end
+
 
 private
   def discount_params

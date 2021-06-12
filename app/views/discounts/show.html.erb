@@ -4,10 +4,12 @@
     <tr>
       <td>Percentage</td>
       <td>Quantity Required</td>
+      <td>Edit</td>
     </tr>
   </thread>
   <tbody>
     <td><%= @discount.percentage %>%</td>
     <td><%= @discount.quantity_required %> Items required for discount</td>
+    <td><%= link_to "Edit Discount", "/merchant/#{@merchant.id}/discounts/#{@discount.id}/edit", method: :get %>
   </tbody>
 </table>

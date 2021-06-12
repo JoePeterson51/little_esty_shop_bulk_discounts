@@ -1,4 +1,5 @@
 <h2><%= @merchant.name %>'s discounts</h2>
+<%= link_to "Create New Discount", "/merchant/#{@merchant.id}/discounts/new" %>
 <h3>Upcoming Holidays</h3>
 <% @holidays.each do |holiday| %>
   <P><%= holiday[:name] %>: <%= holiday[:date] %></p>
@@ -16,7 +17,7 @@
       <tr>
         <td><%= discount.percentage %>%</td>
         <td><%= discount.quantity_required %> Items required for discount</td>
-        <td><%= link_to "Click Here!", "merchant/#{@merchant.id}/discounts/#{discount.id}" %></td>
+        <td><%= link_to "Click Here!", "/merchant/#{@merchant.id}/discounts/#{discount.id}" %></td>
       </tr>
     <% end %>
   </tbody>

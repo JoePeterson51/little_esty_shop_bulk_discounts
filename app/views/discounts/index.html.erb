@@ -19,7 +19,7 @@
         <td><%= discount.percentage %>%</td>
         <td><%= discount.quantity_required %> Items required for discount</td>
         <td><%= link_to "Click Here!", "/merchant/#{@merchant.id}/discounts/#{discount.id}" %></td>
-        <td><%= link_to "Delete Discount", "/merchant/#{@merchant.id}/discounts/#{discount.id}", method: :delete %></td>
+        <td><%= link_to "Delete Discount", "/merchant/#{@merchant.id}/discounts/edit", method: :delete %></td>
       </tr>
     <% end %>
   </tbody>

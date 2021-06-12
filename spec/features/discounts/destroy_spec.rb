@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'discounts destroy' do
-  it 'shows the discounts and their information' do
+  it 'destroys the discounts' do
     merchant = Merchant.create!(name: 'Hair Care')
     discount_1 = merchant.discounts.create!(percentage: 20, quantity_required: 10)
 

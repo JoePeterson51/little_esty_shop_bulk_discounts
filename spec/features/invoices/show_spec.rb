@@ -5,8 +5,8 @@ RSpec.describe 'invoices show' do
     @merchant1 = Merchant.create!(name: 'Hair Care')
     @merchant2 = Merchant.create!(name: 'Jewelry')
 
-    discount_1 = @merchant1.discounts.create!(percentage: 20, quantity_required: 10)
-    discount_2 = @merchant1.discounts.create!(percentage: 25, quantity_required: 15)
+    @discount_1 = @merchant1.discounts.create!(percentage: 20, quantity_required: 10)
+    @discount_2 = @merchant1.discounts.create!(percentage: 25, quantity_required: 15)
 
     @item_1 = Item.create!(name: "Shampoo", description: "This washes your hair", unit_price: 10, merchant_id: @merchant1.id, status: 1)
     @item_2 = Item.create!(name: "Conditioner", description: "This makes your hair shiny", unit_price: 8, merchant_id: @merchant1.id)
@@ -101,7 +101,14 @@ RSpec.describe 'invoices show' do
 
   it "shows the total with discounts" do
     visit merchant_invoice_path(@merchant1, @invoice_1)
-    save_and_open_page
+
     expect(page).to have_content(@invoice_1.total_with_bulk_discount)
+  end
+
+  it "has a link to the discounts show page if one was applied" do
+    visit merchant_invoice_path(@merchant1, @invoice_1)
+    save_and_open_page
+    click_link "#{@item_8.name} Discounts"
+    expect(current_path).to eq("/merchant/#{@merchant1.id}/discounts/#{@discount_1.id}")
   end
 end

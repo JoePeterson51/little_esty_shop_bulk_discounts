@@ -75,7 +75,7 @@ describe 'Admin Invoices Index Page' do
 
   it "shows the total with discounts" do
     visit merchant_invoice_path(@m1, @i1)
-    save_and_open_page
+
     expect(page).to have_content(@i1.total_with_bulk_discount)
   end
 end

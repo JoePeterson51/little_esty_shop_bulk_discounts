@@ -7,6 +7,9 @@ describe 'Admin Invoices Index Page' do
     @c1 = Customer.create!(first_name: 'Yo', last_name: 'Yoz', address: '123 Heyyo', city: 'Whoville', state: 'CO', zip: 12345)
     @c2 = Customer.create!(first_name: 'Hey', last_name: 'Heyz')
 
+    @discount_1 = @m1.discounts.create!(percentage: 20, quantity_required: 10)
+    @discount_2 = @m1.discounts.create!(percentage: 25, quantity_required: 15)
+
     @i1 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: '2012-03-25 09:54:09')
     @i2 = Invoice.create!(customer_id: @c2.id, status: 1, created_at: '2012-03-25 09:30:09')
 
@@ -68,5 +71,11 @@ describe 'Admin Invoices Index Page' do
       expect(current_path).to eq(admin_invoice_path(@i1))
       expect(@i1.status).to eq('complete')
     end
+  end
+
+  it "shows the total with discounts" do
+    visit merchant_invoice_path(@m1, @i1)
+    save_and_open_page
+    expect(page).to have_content(@i1.total_with_bulk_discount)
   end
 end
